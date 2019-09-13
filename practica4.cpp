@@ -1,48 +1,78 @@
-#include <iostream>
-#include<conio.h>
-using namespace std; 
+#include<iostream>
+#include<stdio.h>
+#include<string.h>
 
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+using namespace std;
 
-struct lugar{
-	char domicilio[20];
-	int calle;
-	char pais[20];
-	
-}; 
-struct autoo{
-	char modelo [20];
-	int dia;
-	float precio;
-	struct lugar lu;
+struct suscripcion{
+    char nombre[20];
+    int tiempo;
+    char nombreR[20];
 };
 
+int main(){
+    struct suscripcion Pe[10];
+    struct suscripcion *apuntador;
+    int opcion;
+    apuntador=Pe;
+    do{
+    
+    int a;
+    char eliminar[20];
+    
+    for(int i=0; i<10; i++){
+        Pe[i].nombre[0]='n';
+    cout<<"MENU"<<endl;
+	cout<<"1. Ingresar datos"<<endl;
+	cout<<"2. Eliminar datos"<<endl;
+	cout<<"3. Mostrar datos"<<endl;
+	cout<<"4. Salir"<<endl;
+    cin>>opcion;
+    
+    switch (opcion){
+        case 1:
+            for(int i=0;i<10; i++){
+                if(Pe[i].nombre[0]='n'){
+                    cout<<"Nombre de la persona: "; fflush(stdin);cin.getline(Pe[i].nombre,20,'\n');
+                    cout<<"Tiempo de suscripcion: "; cin>>Pe[i].tiempo;
+                    cout<<"Nombre de la revista: "; fflush(stdin); cin.getline(Pe[i].nombreR,20,'\n');
+                    cout<<'\n';
+                    break;
+                    }else
+                    cout<<"El "<<i+1<<" espacio esta ocupado"<<endl;
+        }break;
+        case 2:
+            cout<<"Nombre de la persona a eliminar: ";
+			fflush(stdin);
+			cin.getline(eliminar,20,'\n');
+            for(int i=0; i<10; i++){
+            	a=strcmp(apuntador->nombre,eliminar);
+            	if (a!=0)
+            		apuntador++;
+            	else{
+					Pe[i].nombre[0]='n';
+                    cout<<"Persona eliminada "<<endl;
+				}
+			}
+            break;
 
-int main(int argc, char** argv){
-	struct autoo A1[5];
-	struct autoo *apuntador;
-	apuntador=&A1[0];
+        case 3:
+        	for(int i=0; i<'n'; i++){
+        			cout<<"Mostrar datos "<<endl;
+       				cout<<"Nombre de la persona : "<<apuntador->nombre<<endl;
+        			cout<<"Tiempo de suscripcion: "<<apuntador->tiempo<<endl;
+        			cout<<"Nombre de la revista: "<<apuntador->nombreR<<endl;
+        		}
+				break;
+        default:
+            cout<<"Opcion invalida "<<endl;
+        break;
+
+    }
+
+    }
+ } while (opcion != 4); 
 	
-	for (int i=0;i<1;i++){
-		cout<<"Modelo: ";
-		cin.getline(A1[i].modelo,20,'\n');
-		cout<<"Dia: ";
-		cin>>A1[i].dia;
-		cout<<"Precio: ";
-		cin>>A1[i].precio;
-		cout<<"Domicilio: ";
-		fflush(stdin);
-		cin.getline(A1[i].lu.domicilio,20,'\n');
-		
-	}
-	//mostrar o gardado 
-	cout<<endl<<"Modelo guardado: "<<apuntador->modelo;
-	cout<<endl<<"Año guardado: "<<A1[0].dia;
-	cout<<endl<<"Precio guardado: "<<A1[0].precio;
-	cout<<endl<<"Domicilio guardado: "<<A1[0].lu.domicilio;
-	
-	
-	
-	getch();
+
 	return 0;
 }
